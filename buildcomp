@@ -17,12 +17,12 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 # Versions of the packages to build
-BINUTILS_VERSION=2.25.1
+BINUTILS_VERSION=2.27
 GCC_VERSION=5.2.0
 
 # Location of the packages to build
-BINUTILS_PKG=http://ftpmirror.gnu.org/binutils/binutils-$BINUTILS_VERSION.tar.gz
-GCC_PKG=http://ftpmirror.gnu.org/gcc/gcc-$GCC_VERSION/gcc-$GCC_VERSION.tar.gz
+BINUTILS_PKG=https://mirrors.tuna.tsinghua.edu.cn/binutils/binutils-$BINUTILS_VERSION.tar.gz
+GCC_PKG=https://mirrors.tuna.tsinghua.edu.cn/gcc/gcc-$GCC_VERSION/gcc-$GCC_VERSION.tar.gz
 
 # Required packages in host
 HOST_PACKAGES="wget gcc g++ make bison flex info"
@@ -152,7 +152,7 @@ exec_nolog mkdir binutils-build
 exec_nolog pushd binutils-build
     title "Configuring GNU Binutils..."
     execute ../binutils-$BINUTILS_VERSION/configure --prefix=$PREFIX \
-        --target=i386-elf --disable-multilib --disable-nls \
+        --target=i386-elf --with-sysroot --disable-multilib --disable-nls \
         --disable-werror || { echo "Aborting due to errors"; exit 1; }
     title "Building GNU Binutils..."
     execute make || { echo "Aborting due to errors"; exit 1; }
@@ -166,7 +166,7 @@ exec_nolog pushd gcc-build
     execute ../gcc-$GCC_VERSION/configure --prefix=$PREFIX \
         --target=i386-elf --disable-multilib --disable-nls \
         --disable-werror --without-headers \
-        --enable-languages=c,c++ || { echo "Aborting due to errors"; exit 1; }
+        --enable-languages=c,c++,go || { echo "Aborting due to errors"; exit 1; }
     title "Building GNU GCC..."
     execute make all-gcc || { echo "Aborting due to errors"; exit 1; }
     title "Installing GNU GCC..."
