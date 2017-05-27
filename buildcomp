@@ -21,8 +21,8 @@ BINUTILS_VERSION=2.27
 GCC_VERSION=5.2.0
 
 # Location of the packages to build
-BINUTILS_PKG=https://mirrors.tuna.tsinghua.edu.cn/binutils/binutils-$BINUTILS_VERSION.tar.gz
-GCC_PKG=https://mirrors.tuna.tsinghua.edu.cn/gcc/gcc-$GCC_VERSION/gcc-$GCC_VERSION.tar.gz
+BINUTILS_PKG=https://mirrors.tuna.tsinghua.edu.cn/gnu/binutils/binutils-$BINUTILS_VERSION.tar.gz
+GCC_PKG=https://mirrors.tuna.tsinghua.edu.cn/gnu/gcc/gcc-$GCC_VERSION/gcc-$GCC_VERSION.tar.gz
 
 # Required packages in host
 HOST_PACKAGES="wget gcc g++ make bison flex info"
